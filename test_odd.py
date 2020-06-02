@@ -98,7 +98,7 @@ def main(_argv):
             if writer is None:
                 oH, oW = frame.shape[:2]
                 fourcc = cv2.VideoWriter_fourcc(*"MJPG")
-                save_video_path = os.path.join('out_' + os.path.basename(FLAGS.video_path))
+                save_video_path = os.path.join('out_' + os.path.basename(FLAGS.video_path) + '.avi')
                 writer = cv2.VideoWriter(save_video_path, fourcc, 22, (oW, oH), True)
 
             frame_height, frame_width, _ = frame.shape
