@@ -7,7 +7,7 @@ import tensorflow as tf
 import time
 
 from modules.models import RetinaFaceModel
-from modules.utils import (set_memory_growth, load_yaml, draw_bbox_landm,
+from modules.utils import (set_memory_growth, load_yaml, draw_bbox,
                            pad_input_image, recover_pad_output)
 
 

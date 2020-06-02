@@ -56,6 +56,7 @@ def load_dataset(cfg, priors, shuffle=True, buffer_size=10240):
 class ProgressBar(object):
     """A progress bar which can print the progress modified from
        https://github.com/hellock/cvbase/blob/master/cvbase/progress.py"""
+
     def __init__(self, task_num=0, completed=0, bar_width=25):
         self.task_num = task_num
         max_bar_width = self._get_max_bar_width()
@@ -149,8 +150,7 @@ def recover_pad_output(outputs, pad_params):
 def draw_bbox_landm(img, ann, img_height, img_width):
     """draw bboxes and landmarks"""
     # bbox
-    x1, y1, x2, y2 = int(ann[0] * img_width), int(ann[1] * img_height), \
-                     int(ann[2] * img_width), int(ann[3] * img_height)
+    x1, y1, x2, y2 = int(ann[0] * img_width), int(ann[1] * img_height), int(ann[2] * img_width), int(ann[3] * img_height)
     cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
     # confidence
@@ -170,6 +170,17 @@ def draw_bbox_landm(img, ann, img_height, img_width):
                          int(ann[11] * img_height)), 1, (0, 100, 255), 2)
         cv2.circle(img, (int(ann[12] * img_width),
                          int(ann[13] * img_height)), 1, (255, 0, 100), 2)
+
+
+def draw_bbox(img, ann, img_height, img_width):
+    """draw bboxes and landmarks"""
+    # bbox
+    x1, y1, x2, y2 = int(ann[0] * img_width), int(ann[1] * img_height), int(ann[2] * img_width), int(ann[3] * img_height)
+    cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
+
+    # confidence
+    text = "{:.4f}".format(ann[15])
+    cv2.putText(img, text, (int(ann[0] * img_width), int(ann[1] * img_height)), cv2.FONT_HERSHEY_DUPLEX, 0.5, (255, 255, 255))
 
 
 def draw_anchor(img, prior, img_height, img_width):
