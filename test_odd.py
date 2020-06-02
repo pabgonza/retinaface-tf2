@@ -76,8 +76,7 @@ def main(_argv):
         # draw and save results
         save_img_path = os.path.join('out_' + os.path.basename(FLAGS.img_path))
         for prior_index in range(len(outputs)):
-            draw_bbox_landm(img_raw, outputs[prior_index], img_height_raw,
-                            img_width_raw)
+            draw_bbox(img_raw, outputs[prior_index], img_height_raw, img_width_raw)
             cv2.imwrite(save_img_path, img_raw)
         print(f"[*] save result at {save_img_path}")
 
@@ -120,8 +119,7 @@ def main(_argv):
 
             # draw results
             for prior_index in range(len(outputs)):
-                draw_bbox_landm(frame, outputs[prior_index], frame_height,
-                                frame_width)
+                draw_bbox(frame, outputs[prior_index], frame_height, frame_width)
 
             # calculate fps
             fps_str = "FPS: %.2f" % (1 / (time.time() - start_time))
